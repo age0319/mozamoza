@@ -8,3 +8,4 @@ class Document(models.Model):
     # document = models.FileField(upload_to='documents/')
     photo = models.ImageField(upload_to='gallery/', default='SOME STRING')
     uploaded_at = models.DateTimeField(auto_now_add=True)
+    gray = models.ImageField(upload_to='gray/', default='Not Set')
