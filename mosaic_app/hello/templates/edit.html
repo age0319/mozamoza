@@ -10,6 +10,7 @@
     <form action="{% url 'edit' data.id %}" method="post">
         {% csrf_token %}
         <input type="submit" name="button_gray" value="gray">
+        <input type="submit" name="button_mosaic" value="mosaic">
     </form>
 
     <img src="{{ data.gray.url }}" width="10%" height="10%"/>

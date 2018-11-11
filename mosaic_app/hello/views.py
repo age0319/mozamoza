@@ -4,6 +4,7 @@ from .models import Document
 import cv2
 from django.conf import settings
 import os
+from .mosaic import put_mosaic
 
 # Create your views here.
 
@@ -44,10 +45,51 @@ def edit(request, num):
             obj.save()
             return redirect('edit', num)
 
+        elif 'button_mosaic' in request.POST:
+
+
     params = {'data': obj}
 
     return render(request, 'edit.html', params)
 
+def face_mo(url):
+
+    # カスケードファイルを指定して検出器を作成
+    cascade_file = "haarcascade_frontalface_alt.xml"
+
+    cascade = cv2.CascadeClassifier(cascade_file)
+
+    ## ファイル名操作
+    path = settings.BASE_DIR + url
+    # /Users/haru/PycharmProjects/opencv/mosaic_app/media/gallery/DSC_1284
+    file = os.path.splitext(path)[0]
+    # .jpg
+    ext = os.path.splitext(path)[1]
+    output = file + "_mosaic" + ext
+    # DSC_1284_mosaic.jpg
+    mosaic_file = os.path.basename(output)
+    ## ここまで
+
+    # 画像を読み込んでグレイスケールに変換する
+    img = cv2.imread(path)
+    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    # 顔認識を実行
+    face_list = cascade.detectMultiScale(img_gray, minSize=(150, 150))
+
+    # 結果を確認
+    if len(face_list) == 0:
+        print("失敗")
+        quit()
+
+    # 認識した部分に印をつける
+    for (x, y, w, h) in face_list:
+        img = put_mosaic(img, (x, y, x + w, y + h))
+
+    # 画像を出力
+    cv2.imwrite(output, img)
+
+    return mosaic_file
 
 def gray(url):
 
