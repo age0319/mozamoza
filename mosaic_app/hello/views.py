@@ -46,28 +46,37 @@ def edit(request, num):
             return redirect('edit', num)
 
         elif 'button_mosaic' in request.POST:
-
+            file_name = face_mo(obj.photo.url)
+            obj.mosaic = "gallery/" + file_name
+            obj.save()
+            return redirect('edit', num)
 
     params = {'data': obj}
 
     return render(request, 'edit.html', params)
 
+
 def face_mo(url):
 
     # カスケードファイルを指定して検出器を作成
-    cascade_file = "haarcascade_frontalface_alt.xml"
+    cascade_file = settings.BASE_DIR + "/static/" + "haarcascade_frontalface_alt.xml"
 
     cascade = cv2.CascadeClassifier(cascade_file)
 
     ## ファイル名操作
     path = settings.BASE_DIR + url
+
     # /Users/haru/PycharmProjects/opencv/mosaic_app/media/gallery/DSC_1284
     file = os.path.splitext(path)[0]
+
     # .jpg
     ext = os.path.splitext(path)[1]
+
     output = file + "_mosaic" + ext
+
     # DSC_1284_mosaic.jpg
     mosaic_file = os.path.basename(output)
+
     ## ここまで
 
     # 画像を読み込んでグレイスケールに変換する
@@ -91,12 +100,14 @@ def face_mo(url):
 
     return mosaic_file
 
+
 def gray(url):
 
     path = settings.BASE_DIR + url
 
     # /Users/haru/PycharmProjects/opencv/mosaic_app/media/gallery/DSC_1284
     file = os.path.splitext(path)[0]
+
     # .jpg
     ext = os.path.splitext(path)[1]
 
