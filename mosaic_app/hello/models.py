@@ -6,7 +6,7 @@ from django.db import models
 class Document(models.Model):
     description = models.CharField(max_length=255, blank=True)
     # document = models.FileField(upload_to='documents/')
-    photo = models.ImageField(upload_to='gallery/', default='SOME STRING')
+    photo = models.ImageField(upload_to='gallery/', default='Not Set')
     uploaded_at = models.DateTimeField(auto_now_add=True)
     gray = models.ImageField(upload_to='gray/', default='Not Set')
     mosaic = models.ImageField(upload_to='gray/', default='Not Set')

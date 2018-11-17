@@ -1,30 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-</head>
-<body>
+{% extends 'layout.html'%}
 
-    <table>
-    {% for item in data %}
-        <tr>
-            <td>{{ item.id }}</td>
-            <td>{{ item.description }}</td>
-            <td>{{ item.photo }}</td>
-            <td>{{ item.uploaded_at }}</td>
-            <td>{{ item.gray }}</td>
-            <td>{{ item.mosaic }}</td>
-            <td><a href="{% url 'edit' item.id %}">Edit</a></td>
-            <td><a href="{% url 'delete' item.id %}">Delete</a></td>
-        </tr>
-    {% endfor %}
-    </table>
+{% block content %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-3">Image Changer</h1>
+            <p class="lead">これは画像変換ツールです。</p>
+        </div>
 
-    {% for item in data %}
-        <img src="{{ item.photo.url }}" width="10%" height="10%"/>
-    {% endfor %}
-    <br>
-    <a href="{% url 'upload' %}">upload</a>
-</body>
-</html>
+        <div class="container">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-secondary">Upload</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

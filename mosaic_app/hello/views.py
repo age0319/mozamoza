@@ -10,12 +10,7 @@ from .mosaic import put_mosaic
 
 
 def index(request):
-    data = Document.objects.all()
-    params = {'data': data}
-    return render(request, 'index.html', params)
 
-
-def model_form_upload(request):
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
@@ -23,9 +18,22 @@ def model_form_upload(request):
             return redirect('index')
     else:
         form = DocumentForm()
-    return render(request, 'model_form_upload.html', {
+
+    params = {
         'form': form
-    })
+    }
+
+    return render(request, 'index.html', params)
+
+
+def history(request):
+    data = Document.objects.all()
+
+    params = {
+        'data': data,
+    }
+
+    return render(request, 'history.html', params)
 
 
 def delete(request, num):
@@ -46,7 +54,7 @@ def edit(request, num):
             return redirect('edit', num)
 
         elif 'button_mosaic' in request.POST:
-            file_name = face_mo(obj.photo.url)
+            file_name = face_mosaic(obj.photo.url)
             obj.mosaic = "gallery/" + file_name
             obj.save()
             return redirect('edit', num)
@@ -56,16 +64,17 @@ def edit(request, num):
     return render(request, 'edit.html', params)
 
 
-def face_mo(url):
+def face_mosaic(url):
 
     # カスケードファイルを指定して検出器を作成
-    cascade_file = settings.BASE_DIR + "/static/" + "haarcascade_frontalface_alt.xml"
+    cascade_file = settings.BASE_DIR + "/static/xml/" + "haarcascade_frontalface_alt.xml"
 
     cascade = cv2.CascadeClassifier(cascade_file)
 
-    ## ファイル名操作
+    ## 元のファイル名に_mosaicを付け足す
     path = settings.BASE_DIR + url
 
+    # splitextで、拡張子とそれ以外を分離する
     # /Users/haru/PycharmProjects/opencv/mosaic_app/media/gallery/DSC_1284
     file = os.path.splitext(path)[0]
 
@@ -74,10 +83,9 @@ def face_mo(url):
 
     output = file + "_mosaic" + ext
 
+    # basenameで、ファイル名を取り出す
     # DSC_1284_mosaic.jpg
     mosaic_file = os.path.basename(output)
-
-    ## ここまで
 
     # 画像を読み込んでグレイスケールに変換する
     img = cv2.imread(path)
@@ -89,7 +97,7 @@ def face_mo(url):
     # 結果を確認
     if len(face_list) == 0:
         print("失敗")
-        quit()
+        # quit()
 
     # 認識した部分に印をつける
     for (x, y, w, h) in face_list:

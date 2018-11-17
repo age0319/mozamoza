@@ -1,22 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit</title>
-</head>
-<body>
-    <img src="{{ data.photo.url }}" width="10%" height="10%"/>
+{% extends "layout.html" %}
 
-    <form action="{% url 'edit' data.id %}" method="post">
-        {% csrf_token %}
-        <input type="submit" name="button_gray" value="gray">
-        <input type="submit" name="button_mosaic" value="mosaic">
-    </form>
+{% block content %}
 
-    <img src="{{ data.gray.url }}" width="10%" height="10%"/>
-    <img src="{{ data.mosaic.url }}" width="10%" height="10%"/>
+    <div class="container">
+        <img src="{{ data.photo.url }}" width="10%" height="10%"/>
 
-    <a href="{% url 'index' %}">index</a>
+        <form action="{% url 'edit' data.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" name="button_gray" value="gray">
+            <input type="submit" name="button_mosaic" value="mosaic">
+        </form>
 
-</body>
-</html>
+        {% if data.gray != "Not Set" %}
+            <img src="{{ data.gray.url }}" width="10%" height="10%"/>
+        {% endif %}
+
+         {% if data.mosaic != "Not Set" %}
+            <img src="{{ data.mosaic.url }}" width="10%" height="10%"/>
+        {% endif %}
+
+    </div>
+
+{% endblock %}
