@@ -4,41 +4,43 @@
 
     <table class="table">
         <thead class="thead-light">
-        <th scope="col">ID</th>
-        <th scope="col">元画像</th>
-        <th scope="col">横サイズ</th>
-        <th scope="col">縦サイズ</th>
-        <th scope="col">アップロード時刻</th>
-        <th scope="col">グレイ画像</th>
-        <th scope="col">モザイク画像</th>
-        <th scope="col">変換</th>
-        <th scope="col">削除</th>
-        <th scope="col">サムネイル</th>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">元画像</th>
+                <th scope="col">横サイズ</th>
+                <th scope="col">縦サイズ</th>
+                <th scope="col">アップロード時刻</th>
+                <th scope="col">グレイ画像</th>
+                <th scope="col">モザイク画像</th>
+                <th scope="col">変換</th>
+                <th scope="col">削除</th>
+                <th scope="col">サムネイル</th>
+            </tr>
         </thead>
         <tbody>
-            {% for item in data %}
-                <tr>
-                    <td>{{ item.id }}</td>
-                    <td>{{ item.photo }}</td>
-                    {% if item.photo == "Not Set" %}
-                        <td>0</td>
-                        <td>0</td>
-                    {% else %}
-                        <td>{{ item.photo.width }}</td>
-                        <td>{{ item.photo.height }}</td>
-                    {% endif %}
-                    <td>{{ item.uploaded_at }}</td>
-                    <td>{{ item.gray }}</td>
-                    <td>{{ item.mosaic }}</td>
-                    <td><a href="{% url 'edit' item.id %}">Edit</a></td>
-                    <td><a href="{% url 'delete' item.id %}">Delete</a></td>
-                    {% if item.photo == "Not Set" %}
-                        <td>No Image</td>
-                    {% else %}
-                        <td><img src="{{ item.photo.url }}" class="img-thumbnail"/></td>
-                    {% endif %}
-                </tr>
-            {% endfor %}
+                {% for item in data %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.photo }}</td>
+                        {% if item.photo == "Not Set" %}
+                            <td>0</td>
+                            <td>0</td>
+                        {% else %}
+                            <td>{{ item.photo.width }}</td>
+                            <td>{{ item.photo.height }}</td>
+                        {% endif %}
+                        <td>{{ item.uploaded_at }}</td>
+                        <td>{{ item.gray }}</td>
+                        <td>{{ item.mosaic }}</td>
+                        <td><a href="{% url 'edit' item.id %}">Edit</a></td>
+                        <td><a href="{% url 'delete' item.id %}">Delete</a></td>
+                        {% if item.photo == "Not Set" %}
+                            <td>No Image</td>
+                        {% else %}
+                            <td><img src="{{ item.photo.url }}" class="img-thumbnail" width="50px"/></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
         </tbody>
     </table>
 

@@ -4,3 +4,13 @@
     background-size: cover;
     background-position: 50% 50%;
 }
+
+.arrow01 {
+     display: block;
+     width: 15px;
+     height: 15px;
+     border-top: solid 3px #697b91;
+     border-right: solid 3px #697b91;
+     -webkit-transform: rotate(45deg);
+     transform: rotate(45deg);
+}

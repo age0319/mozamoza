@@ -15,7 +15,7 @@ def index(request):
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('history')
     else:
         form = DocumentForm()
 
@@ -39,7 +39,7 @@ def history(request):
 def delete(request, num):
     obj = Document.objects.get(id=num)
     obj.delete()
-    return redirect('index')
+    return redirect('history')
 
 
 def edit(request, num):

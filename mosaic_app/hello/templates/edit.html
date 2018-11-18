@@ -3,22 +3,57 @@
 {% block content %}
 
     <div class="container">
-        <img src="{{ data.photo.url }}" width="10%" height="10%"/>
+        <hr>
+            グレー変換
+        <hr>
+        <div class="row justify-content-center">
 
-        <form action="{% url 'edit' data.id %}" method="post">
-            {% csrf_token %}
-            <input type="submit" name="button_gray" value="gray">
-            <input type="submit" name="button_mosaic" value="mosaic">
-        </form>
+            <div class="col-2 align-self-center">
+                <form action="{% url 'edit' data.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-dark" name="button_gray">グレー</button>
+                </form>
+            </div>
+            <div class="col-3">
+                <img src="{{ data.photo.url }}" width="200px" class="rounded"/>
+            </div>
 
-        {% if data.gray != "Not Set" %}
-            <img src="{{ data.gray.url }}" width="10%" height="10%"/>
-        {% endif %}
+            <div class="col-1 align-self-center">
+                <div class="arrow01"></div>
+            </div>
 
-         {% if data.mosaic != "Not Set" %}
-            <img src="{{ data.mosaic.url }}" width="10%" height="10%"/>
-        {% endif %}
+            <div class="col-3">
+                {% if data.gray != "Not Set" %}
+                    <img src="{{ data.gray.url }}" width="200px" class="rounded"/>
+                {% endif %}
+            </div>
+        </div>
+        <hr>
+            顔モザイク処理
+        <hr>
+        <div class="row justify-content-center">
 
+            <div class="col-2 align-self-center">
+                <form action="{% url 'edit' data.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-info" name="button_mosaic">モザイク</button>
+                </form>
+            </div>
+
+            <div class="col-3">
+            </div>
+
+            <div class="col-1 align-self-center">
+                <div class="arrow01"></div>
+            </div>
+
+            <div class="col-3">
+                {% if data.mosaic != "Not Set" %}
+                    <img src="{{ data.mosaic.url }}" width="200px" class="rounded"/>
+                {% endif %}
+            </div>
+
+        </div>
     </div>
 
 {% endblock %}
