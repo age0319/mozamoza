@@ -10,9 +10,9 @@
                 <th scope="col">横サイズ</th>
                 <th scope="col">縦サイズ</th>
                 <th scope="col">アップロード時刻</th>
-                <th scope="col">グレイ画像</th>
-                <th scope="col">モザイク画像</th>
-                <th scope="col">変換</th>
+{#                <th scope="col">グレイ画像</th>#}
+{#                <th scope="col">モザイク画像</th>#}
+                <th scope="col">編集</th>
                 <th scope="col">削除</th>
                 <th scope="col">サムネイル</th>
             </tr>
@@ -30,8 +30,8 @@
                             <td>{{ item.photo.height }}</td>
                         {% endif %}
                         <td>{{ item.uploaded_at }}</td>
-                        <td>{{ item.gray }}</td>
-                        <td>{{ item.mosaic }}</td>
+{#                        <td>{{ item.gray }}</td>#}
+{#                        <td>{{ item.mosaic }}</td>#}
                         <td><a href="{% url 'edit' item.id %}">Edit</a></td>
                         <td><a href="{% url 'delete' item.id %}">Delete</a></td>
                         {% if item.photo == "Not Set" %}

@@ -15,7 +15,9 @@ def index(request):
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('history')
+            data = Document.objects.latest('uploaded_at')
+            print(data.id)
+            return redirect('edit', data.id)
     else:
         form = DocumentForm()
 
@@ -92,7 +94,7 @@ def face_mosaic(url):
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # 顔認識を実行
-    face_list = cascade.detectMultiScale(img_gray, minSize=(150, 150))
+    face_list = cascade.detectMultiScale(img_gray, minSize=(10, 10))
 
     # 結果を確認
     if len(face_list) == 0:

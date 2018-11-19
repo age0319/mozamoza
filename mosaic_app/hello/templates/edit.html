@@ -14,17 +14,17 @@
                     <button type="submit" class="btn btn-outline-dark" name="button_gray">グレー</button>
                 </form>
             </div>
-            <div class="col-3">
-                <img src="{{ data.photo.url }}" width="200px" class="rounded"/>
+            <div class="col-4">
+                <img src="{{ data.photo.url }}" width="300px" class="rounded"/>
             </div>
 
             <div class="col-1 align-self-center">
                 <div class="arrow01"></div>
             </div>
 
-            <div class="col-3">
+            <div class="col-4">
                 {% if data.gray != "Not Set" %}
-                    <img src="{{ data.gray.url }}" width="200px" class="rounded"/>
+                    <img src="{{ data.gray.url }}" width="300px" class="rounded"/>
                 {% endif %}
             </div>
         </div>
@@ -40,16 +40,16 @@
                 </form>
             </div>
 
-            <div class="col-3">
+            <div class="col-4">
             </div>
 
             <div class="col-1 align-self-center">
                 <div class="arrow01"></div>
             </div>
 
-            <div class="col-3">
+            <div class="col-4">
                 {% if data.mosaic != "Not Set" %}
-                    <img src="{{ data.mosaic.url }}" width="200px" class="rounded"/>
+                    <img src="{{ data.mosaic.url }}" width="300px" class="rounded"/>
                 {% endif %}
             </div>
 
