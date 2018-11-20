@@ -27,6 +27,10 @@
                     <img src="{{ data.gray.url }}" width="300px" class="rounded"/>
                 {% endif %}
             </div>
+
+            <div class="col-1 align-self-center">
+                <a class="btn btn-primary" href='{{ data.gray.url }}' download>ダウンロード</a>
+            </div>
         </div>
         <hr>
             顔モザイク処理
@@ -51,6 +55,10 @@
                 {% if data.mosaic != "Not Set" %}
                     <img src="{{ data.mosaic.url }}" width="300px" class="rounded"/>
                 {% endif %}
+            </div>
+
+            <div class="col-1 align-self-center">
+                <a class="btn btn-primary" href='{{ data.mosaic.url }}' download>ダウンロード</a>
             </div>
 
         </div>
