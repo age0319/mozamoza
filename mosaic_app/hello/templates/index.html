@@ -3,17 +3,16 @@
 {% block content %}
     <div class="container">
         <div class="jumbotron">
-            <h1 class="display-3">Image Changer</h1>
-            <p class="lead">これは画像変換ツールです。</p>
+            <h1 class="display-3">MozaMoza</h1>
+            <p class="lead">顔にモザイクをかけるアプリです。</p>
         </div>
-
-        <div class="container">
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-secondary">Upload</button>
-            </form>
-        </div>
+        <p>インスタやツイッターに画像をアップするときに、他人の顔が映ってると困るときありますよね.</p>
+        <p>↓↓から画像をアップロードして顔にモザイクをかけてみましょう。</p>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-secondary">Upload</button>
+        </form>
     </div>
 
 {% endblock %}
