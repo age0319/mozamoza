@@ -16,7 +16,6 @@ def index(request):
         if form.is_valid():
             form.save()
             data = Document.objects.latest('uploaded_at')
-            print(data.id)
             return redirect('edit', data.id)
     else:
         form = DocumentForm()

@@ -23,7 +23,9 @@
             </div>
 
             <div class="col-4">
-                {% if data.gray != "Not Set" %}
+                {% if data.gray == "Not Set" %}
+
+                {% else %}
                     <img src="{{ data.gray.url }}" width="300px" class="rounded"/>
                 {% endif %}
             </div>
@@ -45,6 +47,7 @@
             </div>
 
             <div class="col-4">
+                <img src="{{ data.photo.url }}" width="300px" class="rounded"/>
             </div>
 
             <div class="col-1 align-self-center">
@@ -52,7 +55,9 @@
             </div>
 
             <div class="col-4">
-                {% if data.mosaic != "Not Set" %}
+                {% if data.gray == "Not Set" %}
+
+                {% else %}
                     <img src="{{ data.mosaic.url }}" width="300px" class="rounded"/>
                 {% endif %}
             </div>
