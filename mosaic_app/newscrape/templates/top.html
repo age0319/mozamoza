@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Scrape!!!</title>
+</head>
+<body>
+    <form action="{% url 'index' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="clickme">
+    </form>
+    {% for a in articles %}
+        <p></p>
+        <a href="{{ a.link }}" target="_blank">{{ a.title }}</a>
+        <p></p>
+    {% endfor %}
+</body>
+</html>
