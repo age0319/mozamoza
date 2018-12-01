@@ -2,4 +2,4 @@ from django import forms
 
 
 class SearchForm(forms.Form):
-    keyword = forms.CharField(label="keyword")
+    keyword = forms.CharField(label="キーワード")
