@@ -5,18 +5,19 @@
     <meta charset="UTF-8">
     <title>NewScrape</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 </head>
 <body background="{% static 'img/leaves.png' %}">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col-md-8 col-xs-12">
                 <h2>NewScrape</h2>
                 <p>あなたの読みたいニュース記事を検索してね。(J1、Python、フィンテック)</p>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-4">
-                <form action="{% url 'index' %}" method="post">
+            <div class="col-md-4 col-xs-12">
+                <form action="{% url 'news_index' %}" method="post">
                     {% csrf_token %}
                     {{ form }}
                     <input type="submit" value="検索" class="btn btn-primary">
@@ -25,7 +26,7 @@
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col-md-8 col-xs-12">
                     <hr>
                 {% for a in articles %}
                     <p>[{{ a.published }}]</p>
