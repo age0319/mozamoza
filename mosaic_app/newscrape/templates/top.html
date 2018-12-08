@@ -10,13 +10,13 @@
 <body background="{% static 'img/leaves.png' %}">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8 col-xs-12">
+            <div class="col-md-8">
                 <h2>NewScrape</h2>
                 <p>あなたの読みたいニュース記事を検索してね。(J1、Python、フィンテック)</p>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-md-4 col-xs-12">
+            <div class="col-md-4">
                 <form action="{% url 'news_index' %}" method="post">
                     {% csrf_token %}
                     {{ form }}
@@ -26,7 +26,7 @@
         </div>
 
         <div class="row justify-content-center">
-            <div class="col-md-8 col-xs-12">
+            <div class="col-md-8">
                     <hr>
                 {% for a in articles %}
                     <p>[{{ a.published }}]</p>
